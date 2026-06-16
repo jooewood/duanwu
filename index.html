@@ -163,6 +163,26 @@
       color: #fff;
     }
 
+    .print-status {
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 18px;
+      z-index: 10000;
+      display: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.45;
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+    }
+
+    .print-status.show {
+      display: block;
+    }
+
     section {
       padding: 48px 0;
     }
@@ -664,7 +684,7 @@
         border-bottom: 0;
         break-after: page;
       }
-      .hero::after, .quick-actions, .hero-actions, .tabs, .interactive-only { display: none !important; }
+      .hero::after, .quick-actions, .hero-actions, .tabs, .interactive-only, .print-status { display: none !important; }
       section.module-collapsed > .wrap > :not(.section-title) { display: block !important; }
       .module-toggle { display: none; }
       .hero-inner { width: 100%; padding: 80px 0 44px; }
@@ -727,6 +747,8 @@
       <button type="button" data-print>导出 PDF</button>
     </div>
   </div>
+
+  <div class="print-status" id="printStatus" role="status" aria-live="polite"></div>
 
   <main>
     <section id="overview">
@@ -1302,8 +1324,21 @@
     const expandAll = document.getElementById('expandAll');
     const collapseAll = document.getElementById('collapseAll');
     const printButtons = document.querySelectorAll('[data-print]');
+    const printStatus = document.getElementById('printStatus');
     const detailBlocks = document.querySelectorAll('details');
     const moduleSections = document.querySelectorAll('main > section');
+
+    function showPrintStatus(message, autoHide = true) {
+      if (!printStatus) return;
+      printStatus.textContent = message;
+      printStatus.classList.add('show');
+      if (autoHide) {
+        window.clearTimeout(showPrintStatus.timer);
+        showPrintStatus.timer = window.setTimeout(() => {
+          printStatus.classList.remove('show');
+        }, 4200);
+      }
+    }
 
     moduleSections.forEach((section) => {
       const title = section.querySelector(':scope > .wrap > .section-title');
@@ -1412,6 +1447,7 @@
 
     printButtons.forEach((button) => {
       button.addEventListener('click', () => {
+        showPrintStatus('正在准备 PDF：已展开全部内容。');
         moduleSections.forEach((section) => {
           section.classList.remove('module-collapsed');
           const toggle = section.querySelector('.module-toggle');
@@ -1423,7 +1459,7 @@
           if (typeof window.print === 'function') {
             window.print();
           } else {
-            alert('当前浏览器不支持直接打印，请用系统浏览器打开后保存为 PDF。');
+            showPrintStatus('当前内置浏览器不支持调起打印。请用系统浏览器打开页面，再选择“保存为 PDF”。', false);
           }
         }, 180);
       });
