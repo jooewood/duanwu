@@ -11,6 +11,10 @@ https://jooewood.github.io/duanwu/
 - `index.html`：主页面，GitHub Pages 直接发布这个文件。
 - `.nojekyll`：避免 GitHub Pages 走 Jekyll 处理。
 
+## 导出 PDF
+
+打开页面后点 `导出 PDF`，在系统打印窗口里选择“保存为 PDF”。导出前页面会自动展开所有模块。
+
 ## 更新方式
 
 修改 `index.html` 后提交并推送到 `main` 分支：

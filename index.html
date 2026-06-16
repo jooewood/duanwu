@@ -709,12 +709,13 @@
 <body>
   <header class="hero" id="top">
     <div class="hero-inner">
-      <span class="kicker">07:30 上海宜山路发车 · 端午 3 天 · 4男 · 自驾 · 雨天预案</span>
+      <span class="kicker">07:30 上海宜山路发车 · 端午 3 天 · 4男 · 电车自驾 · 雨天预案</span>
       <h1>上海出发，浙东山海端午三日游</h1>
       <p>7:15 到宜山路，7:30 发车。路线：余姚进山、宁海古村温泉、象山海边返程。雨天降强度。</p>
       <div class="hero-actions">
         <a class="btn primary" href="#route">看三天路线</a>
         <a class="btn" href="#planner">出发前检查</a>
+        <button class="btn" type="button" data-print>导出 PDF</button>
       </div>
     </div>
   </header>
@@ -723,6 +724,7 @@
     <div class="wrap" aria-label="展开收起操作">
       <button class="primary-action" type="button" id="expandAll">一键展开</button>
       <button type="button" id="collapseAll">一键收起</button>
+      <button type="button" data-print>导出 PDF</button>
     </div>
   </div>
 
@@ -1299,6 +1301,7 @@
     const days = document.querySelectorAll('.day');
     const expandAll = document.getElementById('expandAll');
     const collapseAll = document.getElementById('collapseAll');
+    const printButtons = document.querySelectorAll('[data-print]');
     const detailBlocks = document.querySelectorAll('details');
     const moduleSections = document.querySelectorAll('main > section');
 
@@ -1405,6 +1408,25 @@
         button?.setAttribute('aria-label', '收起模块');
       });
       detailBlocks.forEach((detail) => { detail.open = true; });
+    });
+
+    printButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        moduleSections.forEach((section) => {
+          section.classList.remove('module-collapsed');
+          const toggle = section.querySelector('.module-toggle');
+          toggle?.setAttribute('aria-expanded', 'true');
+          toggle?.setAttribute('aria-label', '收起模块');
+        });
+        detailBlocks.forEach((detail) => { detail.open = true; });
+        setTimeout(() => {
+          if (typeof window.print === 'function') {
+            window.print();
+          } else {
+            alert('当前浏览器不支持直接打印，请用系统浏览器打开后保存为 PDF。');
+          }
+        }, 180);
+      });
     });
 
     collapseAll?.addEventListener('click', () => {
