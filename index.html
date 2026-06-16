@@ -176,6 +176,37 @@
       margin-bottom: 18px;
     }
 
+    .module-toggle {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      padding: 0;
+    }
+
+    .module-toggle::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+    }
+
+    section.module-collapsed .module-toggle::before {
+      transform: rotate(-45deg);
+    }
+
+    section.module-collapsed > :not(.section-title) {
+      display: none !important;
+    }
+
     h2 {
       margin: 0;
       font-size: clamp(28px, 4vw, 42px);
@@ -573,6 +604,7 @@
       .quick-actions .wrap { padding-top: 10px; padding-bottom: 10px; }
       .quick-actions button, .chip { font-size: 14px; padding: 10px 12px; }
       .section-title { margin-bottom: 12px; }
+      .module-toggle { width: 30px; height: 30px; }
       .prep-content { padding: 0 14px 14px; }
       details.prep-details summary { padding: 15px; }
       .map a { align-items: flex-start; }
@@ -604,6 +636,8 @@
         break-after: page;
       }
       .hero::after, .quick-actions, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
+      section.module-collapsed > :not(.section-title) { display: block !important; }
+      .module-toggle { display: none; }
       .hero-inner { width: 100%; padding: 80px 0 44px; }
       .kicker { border-radius: 8px; line-height: 1.35; background: rgba(0,0,0,.28); color: #fff; }
       h1 { font-size: 40px; line-height: 1.04; margin: 18px 0 14px; color: inherit; }
@@ -684,16 +718,14 @@
 
     <section id="prep">
       <div class="wrap">
-        <details class="prep-details" open>
-          <summary>
-            <span class="summary-title">
-              <strong>出行准备</strong>
-              <span>4男自驾、2 间标间、端午雨天。点开看车辆、雨具、住宿、补给和分工。</span>
-            </span>
-            <span class="summary-icon" aria-hidden="true">+</span>
-          </summary>
-          <div class="prep-content">
-            <div class="grid prep-grid" style="margin-top:18px">
+        <div class="section-title">
+          <div>
+            <h2>出行准备</h2>
+            <p class="lead">4男自驾、2 间标间、端午雨天。重点检查车辆、雨具、住宿、补给和分工。</p>
+          </div>
+        </div>
+        <div class="prep-content">
+            <div class="grid prep-grid">
               <div class="panel">
                 <h3>车和路线</h3>
                 <ul class="prep-list">
@@ -749,8 +781,7 @@
                 </ul>
               </div>
             </div>
-          </div>
-        </details>
+        </div>
       </div>
     </section>
 
@@ -1169,12 +1200,41 @@
     const expandAll = document.getElementById('expandAll');
     const collapseAll = document.getElementById('collapseAll');
     const detailBlocks = document.querySelectorAll('details');
+    const moduleSections = document.querySelectorAll('main > section');
+
+    moduleSections.forEach((section) => {
+      const title = section.querySelector(':scope > .wrap > .section-title');
+      if (!title) return;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'module-toggle';
+      button.setAttribute('aria-label', '收起模块');
+      button.setAttribute('aria-expanded', 'true');
+      title.appendChild(button);
+      button.addEventListener('click', () => {
+        const collapsed = section.classList.toggle('module-collapsed');
+        button.setAttribute('aria-expanded', String(!collapsed));
+        button.setAttribute('aria-label', collapsed ? '展开模块' : '收起模块');
+      });
+    });
 
     expandAll?.addEventListener('click', () => {
+      moduleSections.forEach((section) => {
+        section.classList.remove('module-collapsed');
+        const button = section.querySelector('.module-toggle');
+        button?.setAttribute('aria-expanded', 'true');
+        button?.setAttribute('aria-label', '收起模块');
+      });
       detailBlocks.forEach((detail) => { detail.open = true; });
     });
 
     collapseAll?.addEventListener('click', () => {
+      moduleSections.forEach((section) => {
+        section.classList.add('module-collapsed');
+        const button = section.querySelector('.module-toggle');
+        button?.setAttribute('aria-expanded', 'false');
+        button?.setAttribute('aria-label', '展开模块');
+      });
       detailBlocks.forEach((detail) => { detail.open = false; });
     });
 
