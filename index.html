@@ -45,9 +45,26 @@
       align-items: end;
       position: relative;
       color: #fff;
-      background:
-        linear-gradient(180deg, rgba(9, 19, 17, .22), rgba(9, 19, 17, .82)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82") center/cover;
+      background: #2c3530;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(9, 19, 17, .16), rgba(9, 19, 17, .82));
+      pointer-events: none;
     }
 
     .hero::after {
@@ -55,13 +72,14 @@
       position: absolute;
       inset: auto 0 0;
       height: 18vh;
+      z-index: 1;
       background: linear-gradient(180deg, transparent, var(--paper));
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
       padding: 88px 0 82px;
@@ -678,11 +696,17 @@
       .hero {
         min-height: 520px;
         color: #fff;
-        background:
-          linear-gradient(180deg, rgba(9, 19, 17, .25), rgba(9, 19, 17, .82)),
-          url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=76") center/cover;
+        background: #2c3530;
         border-bottom: 0;
         break-after: page;
+      }
+      .hero-bg {
+        display: block !important;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .hero::after, .quick-actions, .hero-actions, .tabs, .interactive-only, .print-status { display: none !important; }
       section.module-collapsed > .wrap > :not(.section-title) { display: block !important; }
@@ -728,6 +752,7 @@
 </head>
 <body>
   <header class="hero" id="top">
+    <img class="hero-bg" src="assets/hero-road.jpg" alt="" loading="eager">
     <div class="hero-inner">
       <span class="kicker">07:30 上海宜山路发车 · 端午 3 天 · 4男 · 电车自驾 · 雨天预案</span>
       <h1>上海出发，浙东山海端午三日游</h1>
