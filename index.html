@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>上海出发浙东山海端午三日游</title>
   <meta name="description" content="余姚四明山、宁海古村山海、象山半岛三天端午自驾攻略">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
       --ink: #17211d;
@@ -461,52 +462,101 @@
 
     .map-visual {
       position: relative;
-      min-height: 430px;
+      min-height: 520px;
       overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(31,111,85,.08), rgba(43,106,155,.08)),
-        #fff;
+      background: #e9f0ec;
       border-radius: 8px;
-      padding: 22px;
     }
 
-    .map-line {
-      position: absolute;
-      inset: 0;
+    .real-map {
       width: 100%;
       height: 100%;
-      pointer-events: none;
+      min-height: 520px;
+      z-index: 0;
     }
 
-    .pin {
-      position: absolute;
-      width: min(210px, 42%);
-      padding: 10px 12px;
-      border-radius: 8px;
-      background: rgba(255,255,255,.94);
-      box-shadow: none;
+    .leaflet-container {
+      font: inherit;
+      background: #e9f0ec;
     }
 
-    .pin strong { display: block; }
-    .pin small { color: var(--muted); }
-    .pin::before {
+    .route-marker {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 760;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.92);
+    }
+
+    .route-popup strong { display: block; }
+    .route-popup span { color: var(--muted); font-size: 12px; }
+
+    .route-steps {
+      display: grid;
+      gap: 0;
+      margin-top: 12px;
+      position: relative;
+    }
+
+    .route-step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 12px;
+      position: relative;
+      padding: 0 0 18px;
+    }
+
+    .route-step::before {
       content: "";
       position: absolute;
-      left: 12px;
-      top: -9px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--rose);
-      border: 0;
-      box-shadow: none;
+      left: 76px;
+      top: 28px;
+      bottom: -2px;
+      width: 2px;
+      background: rgba(31,111,85,.22);
     }
 
-    .pin.shanghai { left: 7%; top: 8%; }
-    .pin.yuyao { left: 34%; top: 24%; }
-    .pin.siming { left: 20%; top: 49%; }
-    .pin.ninghai { left: 56%; top: 57%; }
-    .pin.xiangshan { left: 70%; top: 75%; }
+    .route-step:last-child::before { display: none; }
+
+    .route-time {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+      padding-top: 2px;
+    }
+
+    .route-body {
+      position: relative;
+      padding: 0 0 0 22px;
+    }
+
+    .route-body::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .route-body strong {
+      display: block;
+      line-height: 1.25;
+    }
+
+    .route-body span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
 
     details.prep-details {
       background: #fff;
@@ -773,31 +823,50 @@
           </div>
         </div>
         <div class="route-map">
-          <div class="map-visual" aria-label="上海到余姚四明山宁海象山路线示意图">
-            <svg class="map-line" viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M125 72 C210 112, 270 130, 365 165 S515 235, 395 305 S470 385, 625 360 S760 420, 790 470" fill="none" stroke="#1f6f55" stroke-width="10" stroke-linecap="round" opacity=".22"/>
-              <path d="M125 72 C210 112, 270 130, 365 165 S515 235, 395 305 S470 385, 625 360 S760 420, 790 470" fill="none" stroke="#1f6f55" stroke-width="3" stroke-linecap="round" stroke-dasharray="9 10"/>
-              <path d="M625 360 C690 350, 740 345, 805 335" fill="none" stroke="#2b6a9b" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 8"/>
-              <text x="55" y="42" fill="#64706a" font-size="16">西北：上海</text>
-              <text x="710" y="505" fill="#64706a" font-size="16">东南：象山海边</text>
-            </svg>
-            <div class="pin shanghai"><strong>上海宜山路</strong><small>Day 1 07:15 到达，07:30 发车</small></div>
-            <div class="pin yuyao"><strong>余姚城区</strong><small>午餐 + 王阳明故居 / 博物馆</small></div>
-            <div class="pin siming"><strong>四明山 / 梁弄</strong><small>第 1 晚住这里，接中村/茅镬</small></div>
-            <div class="pin ninghai"><strong>宁海城区 / 温泉</strong><small>第 2 晚方案 A，雨天最稳</small></div>
-            <div class="pin xiangshan"><strong>石浦 / 象山</strong><small>第 2 晚方案 B 或 Day 3 海边收尾</small></div>
+          <div class="map-visual" aria-label="上海到余姚四明山宁海象山真实地理路线图">
+            <div id="realRouteMap" class="real-map"></div>
           </div>
           <aside class="panel mapbox">
-            <h3>导航顺序</h3>
-            <div class="map">
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF%20%E5%88%B0%20%E4%BD%99%E5%A7%9A"><span>1. 上海宜山路 -> 余姚</span><small>Day 1 上午</small></a>
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%BD%99%E5%A7%9A%20%E5%88%B0%20%E6%A2%81%E5%BC%84%E9%95%87"><span>2. 余姚 -> 梁弄 / 四明湖</span><small>第 1 晚</small></a>
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E6%A2%81%E5%BC%84%E9%95%87%20%E5%88%B0%20%E4%B8%AD%E6%9D%91%20%E9%B9%BF%E4%BA%AD"><span>3. 梁弄 -> 中村 / 茅镬</span><small>Day 2 清晨</small></a>
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%89%8D%E7%AB%A5%E5%8F%A4%E9%95%87%20%E5%88%B0%20%E5%AE%81%E6%B5%B7%E5%9F%8E%E5%8C%BA"><span>4A. 前童 -> 宁海城区</span><small>默认住宿</small></a>
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%89%8D%E7%AB%A5%E5%8F%A4%E9%95%87%20%E5%88%B0%20%E7%9F%B3%E6%B5%A6%E9%95%87"><span>4B. 前童 -> 石浦</span><small>海边优先</small></a>
-              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%B1%A1%E5%B1%B1%20%E5%88%B0%20%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF"><span>5. 象山 -> 上海宜山路</span><small>返程</small></a>
+            <h3>路线时间线</h3>
+            <div class="route-steps">
+              <div class="route-step">
+                <div class="route-time">Day 1<br>07:30</div>
+                <div class="route-body"><strong>上海宜山路出发</strong><span>集合、满电出发，上高速去余姚。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 1<br>午餐</div>
+                <div class="route-body"><strong>余姚城区</strong><span>午餐 + 王阳明故居/博物馆；进山前可补电。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 1<br>傍晚</div>
+                <div class="route-body"><strong>梁弄 / 四明湖 / 四明山</strong><span>盘山、观景，第1晚住山脚。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 2<br>上午</div>
+                <div class="route-body"><strong>中村 / 茅镬古树群</strong><span>溪流古村、轻徒步；雨天缩短停留。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 2<br>下午</div>
+                <div class="route-body"><strong>前童古镇</strong><span>端午民俗、古街、晚餐。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 2<br>夜间</div>
+                <div class="route-body"><strong>宁海城区 / 温泉</strong><span>默认第2晚；补电、泡温泉、休整。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 3<br>上午</div>
+                <div class="route-body"><strong>宁海湾 / 横山岛</strong><span>看船班和风浪；不稳就取消。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 3<br>下午</div>
+                <div class="route-body"><strong>石浦 / 松兰山 / 象山</strong><span>渔港、海边，返沪前补电。</span></div>
+              </div>
+              <div class="route-step">
+                <div class="route-time">Day 3<br>傍晚</div>
+                <div class="route-body"><strong>象山返上海宜山路</strong><span>错峰返程，低于 45% 先补再上高速。</span></div>
+              </div>
             </div>
-            <p class="notice">住宿绑定路线：第 1 晚梁弄/四明湖；第 2 晚默认宁海，不上岛则改石浦/象山县城。</p>
+            <p class="notice">地图按真实经纬度画点和路线；实际驾驶路径以高德实时导航为准。</p>
           </aside>
         </div>
       </div>
@@ -1224,6 +1293,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
@@ -1247,6 +1317,85 @@
         button.setAttribute('aria-label', collapsed ? '展开模块' : '收起模块');
       });
     });
+
+    function initRealRouteMap() {
+      const el = document.getElementById('realRouteMap');
+      if (!el || typeof L === 'undefined') return;
+
+      const points = [
+        { n: 1, name: '上海宜山路', note: 'Day 1 07:30 发车', lat: 31.1839, lng: 121.4336 },
+        { n: 2, name: '余姚城区', note: '午餐 + 文化点 + 进山前补电', lat: 30.0372, lng: 121.1546 },
+        { n: 3, name: '梁弄 / 四明湖', note: '第1晚，四明山入口', lat: 29.9228, lng: 121.0687 },
+        { n: 4, name: '鹿亭中村 / 茅镬', note: 'Day 2 上午，溪流古村', lat: 29.8134, lng: 121.0092 },
+        { n: 5, name: '前童古镇', note: 'Day 2 下午，端午民俗', lat: 29.2876, lng: 121.3587 },
+        { n: 6, name: '宁海城区 / 温泉', note: '第2晚默认，补电休整', lat: 29.2889, lng: 121.4298 },
+        { n: 7, name: '强蛟宁海湾 / 横山岛', note: 'Day 3 上午，看船班', lat: 29.1785, lng: 121.5630 },
+        { n: 8, name: '石浦 / 象山', note: 'Day 3 下午，渔港海边', lat: 29.2040, lng: 121.9380 },
+        { n: 9, name: '上海宜山路', note: '返程终点', lat: 31.1839, lng: 121.4336 }
+      ];
+
+      const map = L.map(el, {
+        zoomControl: false,
+        scrollWheelZoom: false,
+        dragging: true,
+        attributionControl: false
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18
+      }).addTo(map);
+
+      const route = points.map((p) => [p.lat, p.lng]);
+      const fallbackLine = () => L.polyline(route, {
+        color: '#1f6f55',
+        weight: 5,
+        opacity: .82,
+        lineJoin: 'round'
+      }).addTo(map);
+
+      const routeUrl = `https://router.project-osrm.org/route/v1/driving/${points.map((p) => `${p.lng},${p.lat}`).join(';')}?overview=full&geometries=geojson`;
+      fetch(routeUrl)
+        .then((res) => res.ok ? res.json() : Promise.reject(new Error('route unavailable')))
+        .then((data) => {
+          const coords = data.routes?.[0]?.geometry?.coordinates;
+          if (!coords?.length) {
+            fallbackLine();
+            return;
+          }
+          L.geoJSON({ type: 'LineString', coordinates: coords }, {
+            style: {
+              color: '#1f6f55',
+              weight: 5,
+              opacity: .86,
+              lineJoin: 'round'
+            }
+          }).addTo(map);
+        })
+        .catch(fallbackLine);
+
+      L.polyline([[points[5].lat, points[5].lng], [points[7].lat, points[7].lng]], {
+        color: '#2b6a9b',
+        weight: 3,
+        opacity: .75,
+        dashArray: '7 9'
+      }).addTo(map);
+
+      points.forEach((point) => {
+        const marker = L.divIcon({
+          className: '',
+          html: `<div class="route-marker">${point.n}</div>`,
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
+        });
+        L.marker([point.lat, point.lng], { icon: marker })
+          .addTo(map)
+          .bindPopup(`<div class="route-popup"><strong>${point.name}</strong><span>${point.note}</span></div>`);
+      });
+
+      map.fitBounds(route, { padding: [24, 24] });
+    }
+
+    initRealRouteMap();
 
     expandAll?.addEventListener('click', () => {
       moduleSections.forEach((section) => {
