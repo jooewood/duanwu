@@ -513,6 +513,10 @@
       z-index: 0;
     }
 
+    .print-route-overlay {
+      display: none;
+    }
+
     .leaflet-container {
       font: inherit;
       background: #e9f0ec;
@@ -735,6 +739,40 @@
       .card { break-inside: avoid; }
       .photo { min-height: 95px; }
       .map-visual { min-height: 510px; break-inside: avoid; }
+      .print-route-overlay {
+        display: block !important;
+        position: absolute;
+        inset: 0;
+        z-index: 450;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .leaflet-marker-pane {
+        z-index: 650;
+      }
+      .print-route-overlay .route-shadow {
+        fill: none;
+        stroke: rgba(255,255,255,.92);
+        stroke-width: 15;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .print-route-overlay .route-main {
+        fill: none;
+        stroke: #1f6f55;
+        stroke-width: 7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .print-route-overlay .route-alt {
+        fill: none;
+        stroke: #2b6a9b;
+        stroke-width: 5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 10 10;
+      }
       .pin { width: 230px; padding: 9px 10px; }
       .pin.shanghai { left: 5%; top: 5%; }
       .pin.yuyao { left: 22%; top: 22%; }
@@ -874,6 +912,11 @@
         <div class="route-map">
           <div class="map-visual" aria-label="上海到余姚四明山宁海象山真实地理路线图">
             <div id="realRouteMap" class="real-map"></div>
+            <svg class="print-route-overlay" viewBox="0 0 390 520" preserveAspectRatio="none" aria-hidden="true">
+              <path class="route-shadow" d="M312 126 C284 154, 254 190, 238 230 C224 268, 213 295, 194 326 C178 352, 163 377, 146 407 C130 435, 113 462, 97 492" />
+              <path class="route-main" d="M312 126 C284 154, 254 190, 238 230 C224 268, 213 295, 194 326 C178 352, 163 377, 146 407 C130 435, 113 462, 97 492" />
+              <path class="route-alt" d="M194 326 C222 340, 257 350, 296 363" />
+            </svg>
           </div>
           <aside class="panel mapbox">
             <h3>路线时间线</h3>
