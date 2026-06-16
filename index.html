@@ -135,21 +135,21 @@
       margin: 0 auto;
     }
 
-    .sticky {
+    .quick-actions {
       background: rgba(251,250,245,.96);
       border-bottom: 1px solid var(--line);
     }
 
-    .nav {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .quick-actions .wrap {
+      display: flex;
       gap: 8px;
-      padding: 12px 0;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
-    .nav button, .chip {
+    .quick-actions button, .chip {
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 8px;
       padding: 8px 12px;
       color: var(--ink);
       background: #fff;
@@ -158,23 +158,10 @@
       text-align: center;
     }
 
-    .nav button[aria-expanded="true"] {
+    .quick-actions button.primary-action {
       background: var(--ink);
       border-color: var(--ink);
       color: #fff;
-    }
-
-    .nav button::before {
-      content: "+ ";
-      opacity: .75;
-    }
-
-    .nav button[aria-expanded="true"]::before {
-      content: "- ";
-    }
-
-    .section-collapsed {
-      display: none;
     }
 
     section {
@@ -583,8 +570,8 @@
       .wrap { width: min(100% - 28px, 720px); }
       .panel { padding: 15px; }
       .grid { gap: 12px; }
-      .nav { grid-template-columns: 1fr; gap: 7px; padding: 10px 0; }
-      .nav button, .chip { font-size: 14px; padding: 10px 12px; border-radius: 8px; text-align: left; }
+      .quick-actions .wrap { padding-top: 10px; padding-bottom: 10px; }
+      .quick-actions button, .chip { font-size: 14px; padding: 10px 12px; }
       .section-title { margin-bottom: 12px; }
       .prep-content { padding: 0 14px 14px; }
       details.prep-details summary { padding: 15px; }
@@ -616,8 +603,7 @@
         border-bottom: 0;
         break-after: page;
       }
-      .hero::after, .sticky, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
-      .section-collapsed { display: block !important; }
+      .hero::after, .quick-actions, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
       .hero-inner { width: 100%; padding: 80px 0 44px; }
       .kicker { border-radius: 8px; line-height: 1.35; background: rgba(0,0,0,.28); color: #fff; }
       h1 { font-size: 40px; line-height: 1.04; margin: 18px 0 14px; color: inherit; }
@@ -660,9 +646,9 @@
 <body>
   <header class="hero" id="top">
     <div class="hero-inner">
-      <span class="kicker">07:30 上海宜山路集合 · 端午 3 天 · 4 个成年男性 · 自驾 · 雨天预案</span>
+      <span class="kicker">07:30 上海宜山路发车 · 端午 3 天 · 4 个成年男性 · 自驾 · 雨天预案</span>
       <h1>上海出发，浙东山海端午三日游</h1>
-      <p>早上 7:30 在上海宜山路集合，7:45 前发车，采用“余姚进山、宁海古村温泉、象山海边返程”三段式路线，并按 4 人自驾和端午可能下雨重排优先级。</p>
+      <p>早上 7:30 从上海宜山路准时发车，建议 7:15 前到达集合点，采用“余姚进山、宁海古村温泉、象山海边返程”三段式路线，并按 4 人自驾和端午可能下雨重排优先级。</p>
       <div class="hero-actions">
         <a class="btn primary" href="#route">看三天路线</a>
         <a class="btn" href="#planner">出发前检查</a>
@@ -671,22 +657,12 @@
     </div>
   </header>
 
-  <nav class="sticky">
-    <div class="wrap nav" aria-label="内容菜单">
-      <button type="button" data-section="overview" aria-expanded="true">路线总览</button>
-      <button type="button" data-section="prep" aria-expanded="true">出行准备</button>
-      <button type="button" data-section="route-map" aria-expanded="true">路线图</button>
-      <button type="button" data-section="route" aria-expanded="true">每日行程</button>
-      <button type="button" data-section="weather" aria-expanded="false">天气策略</button>
-      <button type="button" data-section="choices" aria-expanded="false">取舍逻辑</button>
-      <button type="button" data-section="lodging" aria-expanded="false">住宿备选</button>
-      <button type="button" data-section="flex" aria-expanded="false">弹性路线</button>
-      <button type="button" data-section="planner" aria-expanded="false">预算与清单</button>
-      <button type="button" data-section="food" aria-expanded="false">沿线吃什么</button>
-      <button type="button" data-section="notes" aria-expanded="false">小红书观察</button>
-      <button type="button" data-section="sources" aria-expanded="false">核验说明</button>
+  <div class="quick-actions">
+    <div class="wrap" aria-label="展开收起操作">
+      <button class="primary-action" type="button" id="expandAll">一键展开</button>
+      <button type="button" id="collapseAll">一键收起</button>
     </div>
-  </nav>
+  </div>
 
   <main>
     <section id="overview">
@@ -698,7 +674,7 @@
           </div>
         </div>
         <div class="grid overview">
-          <div class="panel stat">集合<strong>07:30 宜山路</strong></div>
+          <div class="panel stat">发车<strong>07:30 宜山路</strong></div>
           <div class="panel stat">天气<strong>闷热 + 阵雨</strong></div>
           <div class="panel stat">驾驶<strong>约 850-950 km</strong></div>
           <div class="panel stat">玩法<strong>古村 / 温泉 / 海鲜</strong></div>
@@ -795,7 +771,7 @@
               <text x="55" y="42" fill="#64706a" font-size="16">西北：上海</text>
               <text x="710" y="505" fill="#64706a" font-size="16">东南：象山海边</text>
             </svg>
-            <div class="pin shanghai"><strong>上海宜山路</strong><small>Day 1 07:30 集合，07:45 发车</small></div>
+            <div class="pin shanghai"><strong>上海宜山路</strong><small>Day 1 07:15 到达，07:30 发车</small></div>
             <div class="pin yuyao"><strong>余姚城区</strong><small>午餐 + 王阳明故居 / 博物馆</small></div>
             <div class="pin siming"><strong>四明山 / 梁弄</strong><small>第 1 晚住这里，接中村/茅镬</small></div>
             <div class="pin ninghai"><strong>宁海城区 / 温泉</strong><small>第 2 晚方案 A，雨天最稳</small></div>
@@ -863,9 +839,9 @@
         <article class="day active" id="day1">
           <div class="panel timeline">
             <div class="stop">
-              <h3><span class="time">07:30</span>上海宜山路集合</h3>
-              <p>4 人到齐后装行李、确认导航和雨具。建议 07:45 前发车，走沪昆/杭州湾跨海大桥方向到余姚，正常约 3.5-4.5 小时，节假日按 5 小时预留。</p>
-              <div class="tagrow"><span class="mini">07:45 发车</span><span class="mini">司机轮换</span><span class="mini">雨天留余量</span></div>
+              <h3><span class="time">07:30</span>上海宜山路发车</h3>
+              <p>建议 07:15 前到达集合点，完成装行李、确认导航和雨具。07:30 准时发车，走沪昆/杭州湾跨海大桥方向到余姚，正常约 3.5-4.5 小时，节假日按 5 小时预留。</p>
+              <div class="tagrow"><span class="mini">07:15 到达</span><span class="mini">07:30 发车</span><span class="mini">司机轮换</span></div>
             </div>
             <div class="stop">
               <h3><span class="time">11:45</span>到余姚，先午餐</h3>
@@ -1077,7 +1053,7 @@
           <div class="panel">
             <h3>Day 1 余姚进山</h3>
             <ul class="prep-list">
-              <li><strong>必做：</strong>上海宜山路集合、到余姚午餐、四明山正规观景点 1-2 个。</li>
+              <li><strong>必做：</strong>上海宜山路 07:30 发车、到余姚午餐、四明山正规观景点 1-2 个。</li>
               <li><strong>可换：</strong>王阳明故居、余姚博物馆、河姆渡遗址三选一，不全塞。</li>
               <li><strong>取消：</strong>雨雾大时取消日落追光和深山小路，直接去住宿。</li>
             </ul>
@@ -1190,20 +1166,16 @@
   <script>
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
-    const menuButtons = document.querySelectorAll('.nav button[data-section]');
-    const defaultOpenSections = new Set(['overview', 'prep', 'route-map', 'route']);
+    const expandAll = document.getElementById('expandAll');
+    const collapseAll = document.getElementById('collapseAll');
+    const detailBlocks = document.querySelectorAll('details');
 
-    menuButtons.forEach((button) => {
-      const target = document.getElementById(button.dataset.section);
-      if (!target) return;
-      const open = defaultOpenSections.has(button.dataset.section);
-      target.classList.toggle('section-collapsed', !open);
-      button.setAttribute('aria-expanded', String(open));
-      button.addEventListener('click', () => {
-        const isOpen = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', String(!isOpen));
-        target.classList.toggle('section-collapsed', isOpen);
-      });
+    expandAll?.addEventListener('click', () => {
+      detailBlocks.forEach((detail) => { detail.open = true; });
+    });
+
+    collapseAll?.addEventListener('click', () => {
+      detailBlocks.forEach((detail) => { detail.open = false; });
     });
 
     tabs.forEach((tab) => {
