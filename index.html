@@ -136,31 +136,45 @@
     }
 
     .sticky {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(251,250,245,.93);
-      backdrop-filter: blur(14px);
+      background: rgba(251,250,245,.96);
       border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
-      align-items: center;
-      overflow-x: auto;
-      padding: 10px 0;
+      padding: 12px 0;
     }
 
-    .nav a, .chip {
+    .nav button, .chip {
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 8px 12px;
       color: var(--ink);
       background: #fff;
-      text-decoration: none;
-      white-space: nowrap;
       font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .nav button[aria-expanded="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .nav button::before {
+      content: "+ ";
+      opacity: .75;
+    }
+
+    .nav button[aria-expanded="true"]::before {
+      content: "- ";
+    }
+
+    .section-collapsed {
+      display: none;
     }
 
     section {
@@ -569,8 +583,8 @@
       .wrap { width: min(100% - 28px, 720px); }
       .panel { padding: 15px; }
       .grid { gap: 12px; }
-      .nav { gap: 7px; padding: 8px 0; }
-      .nav a, .chip { font-size: 13px; padding: 7px 10px; }
+      .nav { grid-template-columns: 1fr; gap: 7px; padding: 10px 0; }
+      .nav button, .chip { font-size: 14px; padding: 10px 12px; border-radius: 8px; text-align: left; }
       .section-title { margin-bottom: 12px; }
       .prep-content { padding: 0 14px 14px; }
       details.prep-details summary { padding: 15px; }
@@ -603,6 +617,7 @@
         break-after: page;
       }
       .hero::after, .sticky, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
+      .section-collapsed { display: block !important; }
       .hero-inner { width: 100%; padding: 80px 0 44px; }
       .kicker { border-radius: 8px; line-height: 1.35; background: rgba(0,0,0,.28); color: #fff; }
       h1 { font-size: 40px; line-height: 1.04; margin: 18px 0 14px; color: inherit; }
@@ -657,19 +672,19 @@
   </header>
 
   <nav class="sticky">
-    <div class="wrap nav" aria-label="页面导航">
-      <a href="#overview">总览</a>
-      <a href="#prep">出行准备</a>
-      <a href="#route-map">路线图</a>
-      <a href="#route">每日行程</a>
-      <a href="#weather">天气策略</a>
-      <a href="#choices">取舍逻辑</a>
-      <a href="#lodging">住宿备选</a>
-      <a href="#flex">弹性路线</a>
-      <a href="#planner">预算与清单</a>
-      <a href="#food">吃什么</a>
-      <a href="#notes">小红书观察</a>
-      <a href="#sources">核验说明</a>
+    <div class="wrap nav" aria-label="内容菜单">
+      <button type="button" data-section="overview" aria-expanded="true">路线总览</button>
+      <button type="button" data-section="prep" aria-expanded="true">出行准备</button>
+      <button type="button" data-section="route-map" aria-expanded="true">路线图</button>
+      <button type="button" data-section="route" aria-expanded="true">每日行程</button>
+      <button type="button" data-section="weather" aria-expanded="false">天气策略</button>
+      <button type="button" data-section="choices" aria-expanded="false">取舍逻辑</button>
+      <button type="button" data-section="lodging" aria-expanded="false">住宿备选</button>
+      <button type="button" data-section="flex" aria-expanded="false">弹性路线</button>
+      <button type="button" data-section="planner" aria-expanded="false">预算与清单</button>
+      <button type="button" data-section="food" aria-expanded="false">沿线吃什么</button>
+      <button type="button" data-section="notes" aria-expanded="false">小红书观察</button>
+      <button type="button" data-section="sources" aria-expanded="false">核验说明</button>
     </div>
   </nav>
 
@@ -1175,6 +1190,22 @@
   <script>
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
+    const menuButtons = document.querySelectorAll('.nav button[data-section]');
+    const defaultOpenSections = new Set(['overview', 'prep', 'route-map', 'route']);
+
+    menuButtons.forEach((button) => {
+      const target = document.getElementById(button.dataset.section);
+      if (!target) return;
+      const open = defaultOpenSections.has(button.dataset.section);
+      target.classList.toggle('section-collapsed', !open);
+      button.setAttribute('aria-expanded', String(open));
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!isOpen));
+        target.classList.toggle('section-collapsed', isOpen);
+      });
+    });
+
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         tabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
