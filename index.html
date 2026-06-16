@@ -560,20 +560,6 @@
       border-top: 1px solid var(--line);
     }
 
-    .print-strip {
-      background: var(--ink);
-      color: #fff;
-      padding: 28px 0;
-    }
-
-    .print-strip .wrap {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
     footer {
       padding: 30px 0 48px;
       color: var(--muted);
@@ -609,8 +595,6 @@
       details.prep-details summary { padding: 15px; }
       .map a { align-items: flex-start; }
       .section-title { display: block; }
-      .print-strip .wrap { display: block; }
-      .print-strip .btn { margin-top: 14px; }
     }
 
     @media print {
@@ -635,7 +619,7 @@
         border-bottom: 0;
         break-after: page;
       }
-      .hero::after, .quick-actions, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
+      .hero::after, .quick-actions, .hero-actions, .tabs, .interactive-only { display: none !important; }
       section.module-collapsed > :not(.section-title) { display: block !important; }
       .module-toggle { display: none; }
       .hero-inner { width: 100%; padding: 80px 0 44px; }
@@ -686,7 +670,6 @@
       <div class="hero-actions">
         <a class="btn primary" href="#route">看三天路线</a>
         <a class="btn" href="#planner">出发前检查</a>
-        <button class="btn" type="button" onclick="window.print()">打印 / 导出 PDF</button>
       </div>
     </div>
   </header>
@@ -858,7 +841,7 @@
         <div class="section-title">
           <div>
             <h2>三天行程</h2>
-            <p class="lead">点击切换每日详情。打印时会自动展开三天完整内容。</p>
+            <p class="lead">点击切换每日详情，按当天节奏查看路线、导航点和雨天取舍。</p>
           </div>
         </div>
         <div class="tabs interactive-only" role="tablist" aria-label="选择天数">
@@ -1176,15 +1159,6 @@
       </div>
     </section>
 
-    <div class="print-strip">
-      <div class="wrap">
-        <div>
-          <h2>要带走这份攻略？</h2>
-          <p>点击按钮可直接用浏览器导出 PDF。打印样式会隐藏导航和按钮，展开所有天数。</p>
-        </div>
-        <button class="btn" type="button" onclick="window.print()">打印 / 导出 PDF</button>
-      </div>
-    </div>
   </main>
 
   <footer id="sources">

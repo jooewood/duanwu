@@ -10,7 +10,6 @@ https://jooewood.github.io/duanwu/
 
 - `index.html`：主页面，GitHub Pages 直接发布这个文件。
 - `.nojekyll`：避免 GitHub Pages 走 Jekyll 处理。
-- `output/`：历史导出的 PDF 存放目录。后续 PDF 不自动维护。
 
 ## 更新方式
 
@@ -22,14 +21,4 @@ git commit -m "Update guide"
 git push
 ```
 
-GitHub Pages 会自动发布，通常几十秒到几分钟生效。
-
-## PDF 导出
-
-PDF 由浏览器手动导出：
-
-1. 打开在线页面或本地页面。
-2. 点击页面里的“打印 / 导出 PDF”。
-3. 在浏览器打印面板中选择“保存为 PDF”。
-
-不要把 PDF 当作主要维护对象；以 `index.html` 为准。
+GitHub Pages 会自动发布，通常几十秒到几分钟生效。页面以 `index.html` 为唯一维护对象。
