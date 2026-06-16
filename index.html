@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>端午三天浙东山海自驾攻略</title>
+  <meta name="description" content="余姚四明山、宁海古村山海、象山半岛三天端午自驾攻略">
+  <style>
+    :root {
+      --ink: #17211d;
+      --muted: #64706a;
+      --line: #d8dfda;
+      --paper: #fbfaf5;
+      --mist: #eef4f0;
+      --green: #1f6f55;
+      --teal: #157b82;
+      --blue: #2b6a9b;
+      --gold: #b9822b;
+      --rose: #b64f55;
+      --shadow: 0 18px 55px rgba(25, 37, 31, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    button, input {
+      font: inherit;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(9, 19, 17, .22), rgba(9, 19, 17, .82)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 18vh;
+      background: linear-gradient(180deg, transparent, var(--paper));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 88px 0 82px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid rgba(255, 255, 255, .42);
+      background: rgba(0, 0, 0, .22);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 20px 0 16px;
+      max-width: 920px;
+      font-size: clamp(40px, 8vw, 86px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 780px;
+      color: rgba(255,255,255,.9);
+      font-size: clamp(17px, 2.2vw, 23px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      min-height: 42px;
+    }
+
+    .btn.primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .hero .btn {
+      border-color: rgba(255,255,255,.45);
+      background: rgba(255,255,255,.92);
+    }
+
+    .hero .btn.primary {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251,250,245,.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .nav a, .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--ink);
+      background: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 48px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .overview {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .panel, .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(25, 37, 31, .06);
+    }
+
+    .panel { padding: 18px; }
+
+    .stat {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: 24px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+    }
+
+    .tab[aria-selected="true"] {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .day {
+      display: none;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .day.active { display: grid; }
+
+    .timeline {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .stop {
+      position: relative;
+      padding: 0 0 18px 16px;
+    }
+
+    .stop::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px #fff;
+    }
+
+    .stop h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .time {
+      display: inline-block;
+      min-width: 72px;
+      color: #fff;
+      background: var(--teal);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+
+    .stop p { margin: 6px 0; color: var(--muted); }
+
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--mist);
+    }
+
+    .mapbox {
+      padding: 18px;
+      min-height: 100%;
+    }
+
+    .map {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .map a {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      text-decoration: none;
+      background: #fbfdfb;
+    }
+
+    .map small { color: var(--muted); }
+
+    .decision {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      overflow: hidden;
+    }
+
+    .photo {
+      min-height: 148px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body { padding: 16px; }
+
+    .card h3 { margin: 0 0 8px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .planner {
+      grid-template-columns: .95fr 1.05fr;
+      align-items: start;
+    }
+
+    .prep-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .prep-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .prep-list li { margin: 6px 0; }
+
+    .checks label {
+      display: flex;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .checks label:last-child { border-bottom: 0; }
+    .checks input { margin-top: 4px; }
+
+    .range {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    input[type="range"] { width: 100%; }
+
+    .budget-total {
+      font-size: 34px;
+      color: var(--green);
+      font-weight: 760;
+    }
+
+    .notice {
+      border-left: 4px solid var(--gold);
+      padding: 14px 16px;
+      background: #fff8ea;
+      border-radius: 0 8px 8px 0;
+      color: #5c4320;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .source-list li {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .route-map {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .map-visual {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(31,111,85,.08), rgba(43,106,155,.08)),
+        #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .map-line {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .pin {
+      position: absolute;
+      width: min(210px, 42%);
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 10px 28px rgba(25, 37, 31, .10);
+    }
+
+    .pin strong { display: block; }
+    .pin small { color: var(--muted); }
+    .pin::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: -9px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--rose);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    .pin.shanghai { left: 7%; top: 8%; }
+    .pin.yuyao { left: 34%; top: 24%; }
+    .pin.siming { left: 20%; top: 49%; }
+    .pin.ninghai { left: 56%; top: 57%; }
+    .pin.xiangshan { left: 70%; top: 75%; }
+
+    details.prep-details {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(25, 37, 31, .06);
+      overflow: hidden;
+    }
+
+    details.prep-details summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    details.prep-details summary::-webkit-details-marker { display: none; }
+
+    .summary-title strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .summary-title span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--mist);
+      border: 1px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    details[open] .summary-icon { transform: rotate(45deg); }
+
+    .prep-content {
+      padding: 0 18px 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .print-strip {
+      background: var(--ink);
+      color: #fff;
+      padding: 28px 0;
+    }
+
+    .print-strip .wrap {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 30px 0 48px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      .overview, .decision, .day, .planner, .prep-grid, .route-map { grid-template-columns: 1fr; }
+      .map-visual { min-height: 520px; }
+      .pin { width: min(240px, 70%); }
+      .pin.shanghai { left: 6%; top: 5%; }
+      .pin.yuyao { left: 24%; top: 22%; }
+      .pin.siming { left: 9%; top: 42%; }
+      .pin.ninghai { left: 35%; top: 61%; }
+      .pin.xiangshan { left: 22%; top: 80%; }
+      .hero { min-height: 72vh; }
+      .hero-inner { width: min(100% - 28px, 720px); padding: 64px 0 58px; }
+      .hero p { font-size: 16px; }
+      .kicker { border-radius: 8px; line-height: 1.4; }
+      h1 { font-size: 40px; line-height: 1.04; }
+      h2 { font-size: 28px; }
+      section { padding: 34px 0; }
+      .wrap { width: min(100% - 28px, 720px); }
+      .panel { padding: 15px; }
+      .prep-content { padding: 0 14px 14px; }
+      details.prep-details summary { padding: 15px; }
+      .map a { align-items: flex-start; }
+      .section-title { display: block; }
+      .print-strip .wrap { display: block; }
+      .print-strip .btn { margin-top: 14px; }
+    }
+
+    @media print {
+      @page { size: 390px 844px; margin: 18px 14px; }
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      html, body { width: 100%; }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .hero {
+        min-height: 520px;
+        color: #fff;
+        background:
+          linear-gradient(180deg, rgba(9, 19, 17, .25), rgba(9, 19, 17, .82)),
+          url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=76") center/cover;
+        border-bottom: 0;
+        break-after: page;
+      }
+      .hero::after, .sticky, .hero-actions, .tabs, .print-strip, .interactive-only { display: none !important; }
+      .hero-inner { width: 100%; padding: 80px 0 44px; }
+      .kicker { border-radius: 8px; line-height: 1.35; background: rgba(0,0,0,.28); color: #fff; }
+      h1 { font-size: 40px; line-height: 1.04; margin: 18px 0 14px; color: inherit; }
+      h2 { font-size: 25px; line-height: 1.1; }
+      h3 { font-size: 15px; margin-top: 0; }
+      .hero p { font-size: 15px; color: rgba(255,255,255,.92); }
+      details.prep-details { break-inside: avoid; }
+      details.prep-details .prep-content { display: block; }
+      details.prep-details summary { border-bottom: 1px solid var(--line); padding: 14px; }
+      .summary-icon { display: none; }
+      .hero-inner, .wrap { width: 100%; padding-left: 0; padding-right: 0; }
+      section { padding: 18px 0; break-inside: auto; }
+      .overview, .decision, .day, .planner, .prep-grid, .route-map { grid-template-columns: 1fr !important; }
+      .day { display: grid !important; page-break-inside: auto; }
+      .panel, .card, details.prep-details {
+        box-shadow: none;
+        border-color: var(--line);
+        border-radius: 8px;
+        break-inside: avoid;
+      }
+      .panel { padding: 13px; }
+      .card { break-inside: avoid; }
+      .photo { min-height: 95px; }
+      .map-visual { min-height: 510px; break-inside: avoid; }
+      .pin { width: 230px; padding: 9px 10px; }
+      .pin.shanghai { left: 5%; top: 5%; }
+      .pin.yuyao { left: 22%; top: 22%; }
+      .pin.siming { left: 8%; top: 42%; }
+      .pin.ninghai { left: 32%; top: 61%; }
+      .pin.xiangshan { left: 18%; top: 80%; }
+      .timeline { padding-left: 18px; }
+      .stop { padding-bottom: 14px; }
+      .map a { padding: 10px; break-inside: avoid; }
+      .notice { padding: 11px 12px; }
+      .lead, .prep-list, .stop p, .card p, footer { color: var(--muted); }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <span class="kicker">上海宜山路出发 · 端午 3 天 · 4 个成年男性 · 自驾 · 雨天预案</span>
+      <h1>浙东山海自驾，不赶路的端午攻略</h1>
+      <p>从上海宜山路出发，采用“余姚进山、宁海古村温泉、象山海边返程”三段式路线，并按 4 人自驾和端午可能下雨重排优先级。</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#route">看三天路线</a>
+        <a class="btn" href="#planner">出发前检查</a>
+        <button class="btn" type="button" onclick="window.print()">打印 / 导出 PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky">
+    <div class="wrap nav" aria-label="页面导航">
+      <a href="#overview">总览</a>
+      <a href="#prep">出行准备</a>
+      <a href="#route-map">路线图</a>
+      <a href="#route">每日行程</a>
+      <a href="#weather">天气策略</a>
+      <a href="#choices">取舍逻辑</a>
+      <a href="#lodging">住宿备选</a>
+      <a href="#flex">弹性路线</a>
+      <a href="#planner">预算与清单</a>
+      <a href="#food">吃什么</a>
+      <a href="#notes">小红书观察</a>
+      <a href="#sources">核验说明</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>路线总览</h2>
+            <p class="lead">适合从宁波、杭州、上海方向自驾。端午人流集中，核心策略是上午进山、傍晚看海，古镇安排在清晨或夜前。</p>
+          </div>
+        </div>
+        <div class="grid overview">
+          <div class="panel stat">起点<strong>上海宜山路</strong></div>
+          <div class="panel stat">天气<strong>闷热 + 阵雨</strong></div>
+          <div class="panel stat">驾驶<strong>约 850-950 km</strong></div>
+          <div class="panel stat">玩法<strong>古村 / 温泉 / 海鲜</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prep">
+      <div class="wrap">
+        <details class="prep-details" open>
+          <summary>
+            <span class="summary-title">
+              <strong>出行准备</strong>
+              <span>4 人自驾、2 间标间、端午雨天。点开看车辆、雨具、住宿、补给和分工。</span>
+            </span>
+            <span class="summary-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="prep-content">
+            <div class="grid prep-grid" style="margin-top:18px">
+              <div class="panel">
+                <h3>车和路线</h3>
+                <ul class="prep-list">
+                  <li>出发前一天加满油或充满电，检查胎压、雨刮、玻璃水。</li>
+                  <li>高德/百度同时收藏：宜山路、余姚、梁弄/四明湖、前童、宁海城区、石浦、松兰山。</li>
+                  <li>下载离线地图；四明山部分路段信号不稳。</li>
+                  <li>至少 2 人能轮换开车，雨天盘山由最熟练司机开。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>雨天装备</h3>
+                <ul class="prep-list">
+                  <li>4 把折叠伞，2-4 件一次性雨衣，防水手机袋。</li>
+                  <li>防滑运动鞋为主，另备拖鞋/水鞋给溪边和海边。</li>
+                  <li>每人 1 套干上衣，车上放干毛巾和塑料袋装湿衣物。</li>
+                  <li>小手电或头灯 1 个，山里民宿和雨夜停车更方便。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>票务住宿</h3>
+                <ul class="prep-list">
+                  <li>先锁第 1 晚梁弄/四明湖；第 2 晚宁海和石浦各锁一套可取消方案。</li>
+                  <li>宁海森林温泉提前看营业时间和端午夜场价格。</li>
+                  <li>横山岛船班、赶海潮汐当天早上再确认，不稳定就取消。</li>
+                  <li>酒店必须确认停车、双床房、独卫、可取消。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>吃喝补给</h3>
+                <ul class="prep-list">
+                  <li>每人至少 1.5L 水；山路和海边便利店密度不稳定。</li>
+                  <li>车上备能量棒、面包、卤味或坚果，防止堵车误餐。</li>
+                  <li>海鲜餐先问价格、加工费和斤两，避免端午临时加价。</li>
+                  <li>雨天午餐优先选停车方便的店，不为了网红店绕路。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>药品和个人物品</h3>
+                <ul class="prep-list">
+                  <li>晕车药、止泻药、创可贴、碘伏棉签、驱蚊液。</li>
+                  <li>防晒仍要带，雨停后海边和山路紫外线会很强。</li>
+                  <li>身份证、驾驶证、行驶证、充电宝、车充和多头数据线。</li>
+                  <li>温泉需要泳裤；自备毛巾更干净，也方便雨天擦身。</li>
+                </ul>
+              </div>
+              <div class="panel">
+                <h3>4 人分工</h3>
+                <ul class="prep-list">
+                  <li>司机 A：上海出城和高速主驾；司机 B：盘山和返程轮换。</li>
+                  <li>副驾：看导航、盯天气预警、提醒服务区和限速。</li>
+                  <li>后排 1 人负责订餐/住宿沟通，1 人负责拍照和物品清点。</li>
+                  <li>每天出发前 5 分钟确认：钥匙、手机、钱包、雨具、换洗衣物。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="route-map">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>路线图</h2>
+            <p class="lead">这不是精确比例地图，而是用于决策的路线关系图：住哪里、第二天怎么接、雨天怎么切换，一眼看清。</p>
+          </div>
+        </div>
+        <div class="route-map">
+          <div class="map-visual" aria-label="上海到余姚四明山宁海象山路线示意图">
+            <svg class="map-line" viewBox="0 0 900 520" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M125 72 C210 112, 270 130, 365 165 S515 235, 395 305 S470 385, 625 360 S760 420, 790 470" fill="none" stroke="#1f6f55" stroke-width="10" stroke-linecap="round" opacity=".22"/>
+              <path d="M125 72 C210 112, 270 130, 365 165 S515 235, 395 305 S470 385, 625 360 S760 420, 790 470" fill="none" stroke="#1f6f55" stroke-width="3" stroke-linecap="round" stroke-dasharray="9 10"/>
+              <path d="M625 360 C690 350, 740 345, 805 335" fill="none" stroke="#2b6a9b" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 8"/>
+              <text x="55" y="42" fill="#64706a" font-size="16">西北：上海</text>
+              <text x="710" y="505" fill="#64706a" font-size="16">东南：象山海边</text>
+            </svg>
+            <div class="pin shanghai"><strong>上海宜山路</strong><small>Day 1 07:30 集合，07:45 发车</small></div>
+            <div class="pin yuyao"><strong>余姚城区</strong><small>午餐 + 王阳明故居 / 博物馆</small></div>
+            <div class="pin siming"><strong>四明山 / 梁弄</strong><small>第 1 晚住这里，接中村/茅镬</small></div>
+            <div class="pin ninghai"><strong>宁海城区 / 温泉</strong><small>第 2 晚方案 A，雨天最稳</small></div>
+            <div class="pin xiangshan"><strong>石浦 / 象山</strong><small>第 2 晚方案 B 或 Day 3 海边收尾</small></div>
+          </div>
+          <aside class="panel mapbox">
+            <h3>导航顺序</h3>
+            <div class="map">
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF%20%E5%88%B0%20%E4%BD%99%E5%A7%9A"><span>1. 上海宜山路 -> 余姚</span><small>Day 1 上午</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%BD%99%E5%A7%9A%20%E5%88%B0%20%E6%A2%81%E5%BC%84%E9%95%87"><span>2. 余姚 -> 梁弄 / 四明湖</span><small>第 1 晚</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E6%A2%81%E5%BC%84%E9%95%87%20%E5%88%B0%20%E4%B8%AD%E6%9D%91%20%E9%B9%BF%E4%BA%AD"><span>3. 梁弄 -> 中村 / 茅镬</span><small>Day 2 清晨</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%89%8D%E7%AB%A5%E5%8F%A4%E9%95%87%20%E5%88%B0%20%E5%AE%81%E6%B5%B7%E5%9F%8E%E5%8C%BA"><span>4A. 前童 -> 宁海城区</span><small>默认住宿</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%89%8D%E7%AB%A5%E5%8F%A4%E9%95%87%20%E5%88%B0%20%E7%9F%B3%E6%B5%A6%E9%95%87"><span>4B. 前童 -> 石浦</span><small>海边优先</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%B1%A1%E5%B1%B1%20%E5%88%B0%20%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF"><span>5. 象山 -> 上海宜山路</span><small>返程</small></a>
+            </div>
+            <p class="notice">住宿和路线绑定：第 1 晚别住余姚城区，除非暴雨；第 2 晚默认宁海，若 Day 3 不上横山岛就改石浦/象山县城。</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="weather">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>端午天气策略</h2>
+            <p class="lead">按 2026 年端午假期 6 月 19-21 日查看，余姚、宁海、象山一带整体偏闷热，并有阵雨或雷雨概率。最终以出发当天气象台预警为准。</p>
+          </div>
+        </div>
+        <div class="grid decision">
+          <div class="panel">
+            <h3>6 月 19 日 周五</h3>
+            <p>相对更适合完成余姚城区和四明山进山段。若只是小雨，可以跑山但减少停车；若雷雨，改博物馆、河姆渡、古镇和民宿。</p>
+            <div class="tagrow"><span class="mini">跑山窗口</span><span class="mini">少停弯道</span><span class="mini">备雨衣</span></div>
+          </div>
+          <div class="panel">
+            <h3>6 月 20 日 周六</h3>
+            <p>雨水风险更高，适合把户外强度降下来：中村短走、前童古镇、宁海森林温泉。瀑布和溪边只看不冒险。</p>
+            <div class="tagrow"><span class="mini">古镇优先</span><span class="mini">温泉兜底</span><span class="mini">防滑鞋</span></div>
+          </div>
+          <div class="panel">
+            <h3>6 月 21 日 周日</h3>
+            <p>象山海边看风雨和能见度。船班不稳就取消横山岛，把时间给石浦渔港古城、海鲜午餐和松兰山短停。</p>
+            <div class="tagrow"><span class="mini">船班复核</span><span class="mini">落日随缘</span><span class="mini">错峰返程</span></div>
+          </div>
+        </div>
+        <p class="notice">4 人自驾建议：司机至少 2 人轮换；雨天盘山线不要为了拍照临停。车上放 4 把伞、2 件一次性雨衣、防水袋、拖鞋/水鞋、干毛巾和一套换洗上衣。</p>
+      </div>
+    </section>
+
+    <section id="route">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>三天行程</h2>
+            <p class="lead">点击切换每日详情。打印时会自动展开三天完整内容。</p>
+          </div>
+        </div>
+        <div class="tabs interactive-only" role="tablist" aria-label="选择天数">
+          <button class="tab" role="tab" aria-selected="true" data-day="day1">Day 1 余姚入山</button>
+          <button class="tab" role="tab" aria-selected="false" data-day="day2">Day 2 四明山到宁海</button>
+          <button class="tab" role="tab" aria-selected="false" data-day="day3">Day 3 象山半岛</button>
+        </div>
+
+        <article class="day active" id="day1">
+          <div class="panel timeline">
+            <div class="stop">
+              <h3><span class="time">07:30</span>上海宜山路集合</h3>
+              <p>4 人到齐后装行李、确认导航和雨具。建议 07:45 前发车，走沪昆/杭州湾跨海大桥方向到余姚，正常约 3.5-4.5 小时，节假日按 5 小时预留。</p>
+              <div class="tagrow"><span class="mini">07:45 发车</span><span class="mini">司机轮换</span><span class="mini">雨天留余量</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">11:45</span>到余姚，先午餐</h3>
+              <p>端午出城不确定性高，先吃饭比先逛更稳。午餐不要拖太久，下午还要进山。</p>
+            </div>
+            <div class="stop">
+              <h3><span class="time">12:45</span>王阳明故居 / 余姚博物馆</h3>
+              <p>先用城市文化热身，雨天也稳。若雨势大，余姚博物馆和河姆渡遗址比纯户外更适合。</p>
+              <div class="tagrow"><span class="mini">文化开场</span><span class="mini">雨天友好</span><span class="mini">停车优先</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">15:00</span>四明山高山环线 - 浒溪线</h3>
+              <p>自驾主菜。白鹿狮峰观景台、四明山王牌观景台适合停靠拍群山、弯道和云海；端午高峰不要在弯道临停。若下大雨或起雾，缩短跑山，只保留 1-2 个正规停车点。</p>
+              <div class="tagrow"><span class="mini">盘山驾驶</span><span class="mini">日落光线</span><span class="mini">免费观景点</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">17:30</span>北溪村或中村住下</h3>
+              <p>不建议 Day 1 冲太多点。住山里，第二天早起看溪谷薄雾；晚餐选民宿农家菜。</p>
+            </div>
+          </div>
+          <aside class="panel mapbox">
+            <h3>Day 1 导航点</h3>
+            <div class="map">
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E7%8E%8B%E9%98%B3%E6%98%8E%E6%95%85%E5%B1%85%20%E4%BD%99%E5%A7%9A"><span>王阳明故居</span><small>高德</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF%20%E5%88%B0%20%E4%BD%99%E5%A7%9A"><span>宜山路 -> 余姚</span><small>出城段</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E6%B2%B3%E5%A7%86%E6%B8%A1%E9%81%97%E5%9D%80"><span>河姆渡遗址</span><small>备选</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E7%99%BD%E9%B9%BF%E7%8B%AE%E5%B3%B0%E8%A7%82%E6%99%AF%E5%8F%B0"><span>白鹿狮峰观景台</span><small>拍山路</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%8C%97%E6%BA%AA%E6%9D%91%20%E4%BD%99%E5%A7%9A"><span>北溪村</span><small>住宿</small></a>
+            </div>
+            <p class="notice">雨天规则：四明山路窄弯多，雨天不追日出、不夜跑、不在弯道停车。若能见度差，直接改余姚博物馆、河姆渡遗址、梁弄午餐和山里民宿休整。</p>
+          </aside>
+        </article>
+
+        <article class="day" id="day2">
+          <div class="panel timeline">
+            <div class="stop">
+              <h3><span class="time">08:00</span>中村 / 茅镬古树群</h3>
+              <p>先走免费小众点：中村白云石拱桥、溪水、古民居；茅镬古树群更安静，适合散步和树荫下拍照。雨后溪边石头滑，4 个男生也别硬踩急水。</p>
+              <div class="tagrow"><span class="mini">免费</span><span class="mini">轻徒步</span><span class="mini">玩水注意防滑</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">10:30</span>仰天湖 / 鹁鸪岩水帘洞</h3>
+              <p>想要“高山小湖 + 夏日凉感”就进四明山国家森林公园；若下小雨，水帘洞和森林步道比继续跑山更稳；雷雨则跳过户外步道。</p>
+            </div>
+            <div class="stop">
+              <h3><span class="time">14:30</span>前往宁海前童古镇</h3>
+              <p>把端午民俗放在前童：水绕屋、卵石街巷、古戏台、包粽子/挂艾草等活动更贴节日气氛。</p>
+              <div class="tagrow"><span class="mini">端午民俗首选</span><span class="mini">古镇慢逛</span><span class="mini">晚餐方便</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">19:30</span>宁海森林温泉</h3>
+              <p>白天山路和古镇步行后，温泉是最稳的恢复项。若预算紧，可换成县城夜宵。</p>
+            </div>
+          </div>
+          <aside class="panel mapbox">
+            <h3>Day 2 导航点</h3>
+            <div class="map">
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E4%B8%AD%E6%9D%91%20%E9%B9%BF%E4%BA%AD%20%E4%BD%99%E5%A7%9A"><span>鹿亭中村</span><small>溪流古村</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%8C%85%E9%95%AC%E5%8F%A4%E6%A0%91%E7%BE%A4"><span>茅镬古树群</span><small>安静散步</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%89%8D%E7%AB%A5%E5%8F%A4%E9%95%87"><span>前童古镇</span><small>端午民俗</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%AE%81%E6%B5%B7%E6%A3%AE%E6%9E%97%E6%B8%A9%E6%B3%89"><span>宁海森林温泉</span><small>放松</small></a>
+            </div>
+            <p class="notice">雨天优先级：前童古镇 + 宁海森林温泉最稳。许家山石头村雨天出片，但石路湿滑；龙宫古村和瀑布线遇雷雨不建议深入。</p>
+          </aside>
+        </article>
+
+        <article class="day" id="day3">
+          <div class="panel timeline">
+            <div class="stop">
+              <h3><span class="time">08:30</span>强蛟宁海湾 / 横山岛</h3>
+              <p>若天气晴朗，把上午留给海湾和短途上岛：环岛步道、礁石赶海、群岛视野。下雨、风大或船班不稳则不要硬上岛，改许家山石头村或直接去石浦吃海鲜。</p>
+              <div class="tagrow"><span class="mini">看船班</span><span class="mini">亲海</span><span class="mini">备凉鞋</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">13:30</span>象山石浦渔港古城</h3>
+              <p>渔港老街、明清海防气质、渔家烟火都集中。端午如遇民俗活动，优先在这里消化节日感。</p>
+            </div>
+            <div class="stop">
+              <h3><span class="time">16:30</span>松兰山 / 亚帆中心</h3>
+              <p>傍晚去海边最舒服。松兰山沙滩、沿海栈道和亚帆中心适合骑行、踏浪、看落日；若阴雨，就把这里改成短停看海，不把落日作为刚需。</p>
+              <div class="tagrow"><span class="mini">免费海岸</span><span class="mini">落日</span><span class="mini">返程前收尾</span></div>
+            </div>
+            <div class="stop">
+              <h3><span class="time">17:30</span>象山 / 宁波方向返上海宜山路</h3>
+              <p>象山回宜山路正常约 4.5-5.5 小时，端午最后一天按 6 小时以上预留。若雨大或拥堵，建议石浦晚餐后 20:00 左右错峰返程。</p>
+            </div>
+            <div class="stop">
+              <h3><span class="time">备选</span>象山影视城 / 半边山 / 东旦金沙滩</h3>
+              <p>想拍照选影视城；想清净海岸选半边山；想露营玩水选东旦金沙滩。雨天不建议露营。</p>
+            </div>
+          </div>
+          <aside class="panel mapbox">
+            <h3>Day 3 导航点</h3>
+            <div class="map">
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%BC%BA%E8%9B%9F%E5%AE%81%E6%B5%B7%E6%B9%BE"><span>强蛟宁海湾</span><small>上岛口</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E7%9F%B3%E6%B5%A6%E6%B8%94%E6%B8%AF%E5%8F%A4%E5%9F%8E"><span>石浦渔港古城</span><small>午后</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E6%9D%BE%E5%85%B0%E5%B1%B1%20%E4%BA%9A%E5%B8%86%E4%B8%AD%E5%BF%83"><span>松兰山 & 亚帆中心</span><small>落日</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%B1%A1%E5%B1%B1%20%E5%88%B0%20%E4%B8%8A%E6%B5%B7%E5%AE%9C%E5%B1%B1%E8%B7%AF"><span>象山 -> 上海宜山路</span><small>返程</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%B1%A1%E5%B1%B1%E5%BD%B1%E8%A7%86%E5%9F%8E"><span>象山影视城</span><small>拍照备选</small></a>
+            </div>
+            <p class="notice">返程建议：从象山回上海宜山路距离长，最怕 16:00-20:00 堵在跨海大桥和入沪段。要么 16:30 前走，要么吃完晚餐再走。</p>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <section id="choices">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>为什么这样取舍</h2>
+            <p class="lead">景点清单很丰富，但三天自驾最怕“打卡式折返”。下面三条是实际执行的取舍逻辑。</p>
+          </div>
+        </div>
+        <div class="grid decision">
+          <div class="card">
+            <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80')"></div>
+            <div class="card-body">
+              <h3>Day 1 只负责进山</h3>
+              <p>余姚文化点 + 四明山观景足够完整。把北溪、中村住宿前置，第二天不用从城区重复爬山。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80')"></div>
+            <div class="card-body">
+              <h3>Day 2 把端午交给前童</h3>
+              <p>前童古镇的水系、古戏台、粽子和艾草活动，比单纯自然景观更有节日辨识度。</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80')"></div>
+            <div class="card-body">
+              <h3>Day 3 用海边收尾</h3>
+              <p>宁海湾到象山是山海转换。上午看岛，下午渔港，傍晚松兰山，节奏比继续深山更轻。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lodging">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>住宿备选</h2>
+            <p class="lead">4 人住 2 间标间。住宿必须跟路线走：第 1 晚服务 Day 2 清晨四明山古村和森林线，第 2 晚服务 Day 3 宁海湾/象山和返上海。不要为了便宜住到反方向，也不要为了网红房牺牲停车和车程。</p>
+          </div>
+        </div>
+        <div class="grid prep-grid">
+          <div class="panel">
+            <h3>第 1 晚：住梁弄 / 四明湖 / 四明山脚</h3>
+            <p class="lead">匹配 Day 1 下午跑山，Day 2 早上去中村、茅镬、仰天湖。核心是不下山折返。</p>
+            <ul class="prep-list">
+              <li><strong>最匹配：</strong>梁弄镇、四明湖、四明山脚的普通酒店/民宿，两间标间合计 600-1000 元/晚比较合理。</li>
+              <li><strong>适合路线：</strong>Day 1 王阳明故居/余姚博物馆 -> 四明山观景 -> 梁弄/四明湖入住；Day 2 直接去中村/茅镬，不回余姚城区。</li>
+              <li><strong>可查名称：</strong>余姚四明山月里民宿、余姚四明山竹语澜山、余姚湖景民宿。它们更贴近四明山/四明湖线，先看是否有双床房和停车位。</li>
+              <li><strong>谨慎选择：</strong>夏夏小居这类更靠山里的民宿，位置适合深玩四明山，但雨天夜路、山路会更累；只有天气稳、价格不高时选。</li>
+              <li><strong>不优先：</strong>余姚城区连锁酒店。便宜但 Day 2 要重新进山，只作为暴雨兜底。</li>
+            </ul>
+            <div class="map" style="margin-top:12px">
+              <a target="_blank" href="https://www.ctrip.com/hotels/list?city=98&keyword=%E6%A2%81%E5%BC%84"><span>查梁弄住宿</span><small>第 1 晚首选</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%9B%9B%E6%98%8E%E6%B9%96%20%E9%85%92%E5%BA%97"><span>四明湖酒店</span><small>路线贴合</small></a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>第 2 晚方案 A：住宁海城区 / 温泉片区</h3>
+            <p class="lead">匹配 Day 2 前童古镇 + 森林温泉，Day 3 上午去强蛟宁海湾/横山岛。雨天最稳。</p>
+            <ul class="prep-list">
+              <li><strong>最匹配：</strong>宁海城区连锁酒店，两间标间合计 520-900 元/晚比较合理；停车、早餐、洗衣比景观重要。</li>
+              <li><strong>适合路线：</strong>Day 2 四明山 -> 前童古镇 -> 宁海城区入住 -> 温泉；Day 3 早上去强蛟宁海湾，船班不好就改许家山/石浦。</li>
+              <li><strong>可查名称：</strong>全季酒店宁海兴宁中路店、宁波宁海桔子水晶酒店、宁海银丰商务宾馆。</li>
+              <li><strong>温泉片区：</strong>如果房价含温泉权益可以选；如果只是贵但不含票，不如住城区再开车去泡。</li>
+              <li><strong>不优先：</strong>前童古镇客栈。氛围好，但停车和雨天搬行李不如城区稳。</li>
+            </ul>
+            <div class="map" style="margin-top:12px">
+              <a target="_blank" href="https://www.ctrip.com/hotels/list?city=1201&keyword=%E5%AE%81%E6%B5%B7%E5%9F%8E%E5%8C%BA"><span>查宁海城区</span><small>第 2 晚 A</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E5%AE%81%E6%B5%B7%E6%A3%AE%E6%9E%97%E6%B8%A9%E6%B3%89%20%E9%85%92%E5%BA%97"><span>温泉周边</span><small>看是否含票</small></a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>第 2 晚方案 B：住石浦 / 象山县城</h3>
+            <p class="lead">匹配 Day 3 主打象山海边、石浦渔港古城和松兰山。适合放弃宁海温泉，换海鲜和轻松返程。</p>
+            <ul class="prep-list">
+              <li><strong>选石浦：</strong>Day 2 晚上直接开到石浦，第二天上午渔港古城/海鲜/海边最顺；两间标间合计 650-1100 元/晚合理。</li>
+              <li><strong>选象山县城：</strong>比石浦更稳、更适合返上海；Day 3 走松兰山、亚帆中心、半边山更顺。</li>
+              <li><strong>可查名称：</strong>全季酒店宁波象山石浦店、象山石浦开元名庭大酒店、元红酒店象山石浦店、象山县石浦浦家宾馆。</li>
+              <li><strong>切换条件：</strong>如果横山岛船班不稳、宁海温泉不想泡，Day 2 晚上直接住石浦/象山县城，Day 3 就少赶路。</li>
+              <li><strong>不优先：</strong>松兰山度假酒店类。端午容易贵，除非两间总价可接受且停车便利。</li>
+            </ul>
+            <div class="map" style="margin-top:12px">
+              <a target="_blank" href="https://www.ctrip.com/hotels/list?city=1823&keyword=%E7%9F%B3%E6%B5%A6"><span>查石浦住宿</span><small>第 2 晚 B</small></a>
+              <a target="_blank" href="https://ditu.amap.com/search?query=%E8%B1%A1%E5%B1%B1%E5%8E%BF%E5%9F%8E%20%E9%85%92%E5%BA%97"><span>象山县城酒店</span><small>返程更顺</small></a>
+            </div>
+          </div>
+        </div>
+        <p class="notice">推荐组合：第 1 晚住梁弄/四明湖，第 2 晚默认住宁海城区；如果 Day 3 想把象山玩得轻松，就第 2 晚改住石浦或象山县城。订房时优先可免费取消，先锁宁海和石浦各一套可取消方案，出发前一天按天气和船班删掉一个。</p>
+      </div>
+    </section>
+
+    <section id="flex">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>弹性路线</h2>
+            <p class="lead">把每天拆成“必做、可换、直接取消”，下雨、堵车、酒店价格变化时不用推倒重来。</p>
+          </div>
+        </div>
+        <div class="grid decision">
+          <div class="panel">
+            <h3>Day 1 余姚进山</h3>
+            <ul class="prep-list">
+              <li><strong>必做：</strong>上海宜山路集合、到余姚午餐、四明山正规观景点 1-2 个。</li>
+              <li><strong>可换：</strong>王阳明故居、余姚博物馆、河姆渡遗址三选一，不全塞。</li>
+              <li><strong>取消：</strong>雨雾大时取消日落追光和深山小路，直接去住宿。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Day 2 宁海古村温泉</h3>
+            <ul class="prep-list">
+              <li><strong>必做：</strong>中村/茅镬二选一，前童古镇，晚上温泉或县城休整。</li>
+              <li><strong>可换：</strong>仰天湖、水帘洞、许家山石头村按天气和体力选一个。</li>
+              <li><strong>取消：</strong>雷雨时取消溪边踩水、瀑布深入和长距离徒步。</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Day 3 象山返上海</h3>
+            <ul class="prep-list">
+              <li><strong>必做：</strong>石浦渔港古城或松兰山至少一个，返程错峰。</li>
+              <li><strong>可换：</strong>横山岛、影视城、半边山、东旦金沙滩按天气四选一。</li>
+              <li><strong>取消：</strong>风雨大时取消上岛和露营，把预算留给海鲜餐。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planner">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>预算与出发清单</h2>
+            <p class="lead">预算为估算，用于快速判断住宿、餐饮、温泉和门票的整体开销。住宿和门票请以出发前实时价格为准。</p>
+          </div>
+        </div>
+        <div class="grid planner">
+          <div class="panel">
+            <h3>人均预算估算</h3>
+            <div class="range">
+              <label>人数 <strong id="peopleText">4 人</strong><input id="people" type="range" min="1" max="6" value="4"></label>
+              <label>住宿档位 <strong id="hotelText">420 元/晚/间</strong><input id="hotel" type="range" min="220" max="900" value="420" step="20"></label>
+              <label>餐饮档位 <strong id="foodText">160 元/人/天</strong><input id="foodCost" type="range" min="90" max="320" value="160" step="10"></label>
+              <label>门票温泉 <strong id="ticketText">260 元/人</strong><input id="ticket" type="range" min="80" max="520" value="260" step="20"></label>
+            </div>
+            <p>估算人均：<span class="budget-total" id="budget">--</span></p>
+            <p class="lead">按 4 人、2 间标间、2 晚计算，含 3 天餐饮、门票温泉和基础停车油费摊销，不含跨城大交通。</p>
+          </div>
+          <div class="panel checks">
+            <h3>出发前检查</h3>
+            <label><input type="checkbox"> 查四明山天气：有雨后初晴再期待云海，暴雨则避开盘山线。</label>
+            <label><input type="checkbox"> 查横山岛船班和潮汐：船班受风浪影响，赶海必须看退潮时间。</label>
+            <label><input type="checkbox"> 预订山里住宿：北溪/中村房源少，端午不要临时找。</label>
+            <label><input type="checkbox"> 备防滑鞋、驱蚊、水鞋、轻薄外套：山里早晚温差和溪边湿滑都明显。</label>
+            <label><input type="checkbox"> 提前收藏导航点：山路信号不稳，建议离线地图。</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="food">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>沿线吃什么</h2>
+            <p class="lead">不要每餐都追网红店。端午排队成本高，按区域吃本地代表菜更稳。</p>
+          </div>
+        </div>
+        <div class="grid overview">
+          <div class="panel"><h3>余姚 / 四明山</h3><p>梁弄大糕、农家土鸡、笋干、溪鱼。山里晚餐提前和民宿确认。</p></div>
+          <div class="panel"><h3>前童古镇</h3><p>前童三宝：老豆腐、空心腐、香干；再加霞客麦饼。</p></div>
+          <div class="panel"><h3>宁海</h3><p>长街蛏子、一市青蟹、麦饺筒、木莲冻、一市馏羹。</p></div>
+          <div class="panel"><h3>象山</h3><p>石浦海鲜面、白蟹、带鱼、鱼丸。看明码标价，先问加工费。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>小红书观察</h2>
+            <p class="lead">网页端可见的四明山搜索结果集中在以下方向，已转化为路线里的执行建议。</p>
+          </div>
+        </div>
+        <ul class="source-list">
+          <li><strong>“四明山纯享版自驾 / 自驾跑山攻略 / 全程免费停车”</strong>：强化 Day 1 盘山线，少排收费点，多留观景停靠时间。</li>
+          <li><strong>“宁波四明山 2 天 1 夜自驾 / 古村花海”</strong>：支持把北溪、中村这类山中古村作为住宿和次日清晨散步点。</li>
+          <li><strong>“峡谷步道、山谷野村、初夏徒步 / 瀑布徒步”</strong>：支持 Day 2 选择中村、茅镬、仰天湖和水帘洞作为轻徒步组合。</li>
+          <li><strong>“余姚 3 天 2 夜深度攻略”</strong>：说明余姚本身能深玩，但本攻略为了接上宁海和象山，压缩余姚城区，只保留文化开场。</li>
+        </ul>
+      <p class="notice">住宿关键词页本次未稳定加载有效笔记卡片，因此酒店备选不引用小红书正文；只保留“山里别追网红民宿、宁海城区更稳、石浦海边不为海景溢价”的订房判断，并给出平台搜索入口方便实时比价。</p>
+      </div>
+    </section>
+
+    <div class="print-strip">
+      <div class="wrap">
+        <div>
+          <h2>要带走这份攻略？</h2>
+          <p>点击按钮可直接用浏览器导出 PDF。打印样式会隐藏导航和按钮，展开所有天数。</p>
+        </div>
+        <button class="btn" type="button" onclick="window.print()">打印 / 导出 PDF</button>
+      </div>
+    </div>
+  </main>
+
+  <footer id="sources">
+    <div class="wrap">
+      <p><strong>核验说明：</strong>已访问小红书搜索“余姚 四明山 端午 攻略”，网页端可见结果标题包括四明山纯享自驾、上海出发四明山一日自驾、四明山 2 天 1 夜、峡谷步道和中村等方向；未复制或改写笔记正文。住宿、宁海、象山关键词页未稳定加载有效卡片，因此酒店备选使用价格带和区域判断，不给死价。出发前仍需复核门票、开放时间、船班、天气、酒店实时房价和临时交通管制。</p>
+      <p><strong>使用提示：</strong>页面内高德链接用于快速导航搜索；预算为估算工具，不代表实时价格。</p>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const days = document.querySelectorAll('.day');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
+        tab.setAttribute('aria-selected', 'true');
+        days.forEach((day) => day.classList.toggle('active', day.id === tab.dataset.day));
+      });
+    });
+
+    const people = document.getElementById('people');
+    const hotel = document.getElementById('hotel');
+    const foodCost = document.getElementById('foodCost');
+    const ticket = document.getElementById('ticket');
+    const peopleText = document.getElementById('peopleText');
+    const hotelText = document.getElementById('hotelText');
+    const foodText = document.getElementById('foodText');
+    const ticketText = document.getElementById('ticketText');
+    const budget = document.getElementById('budget');
+
+    function updateBudget() {
+      const p = Number(people.value);
+      const hotelTotal = Number(hotel.value) * 2 * 2;
+      const foodTotal = Number(foodCost.value) * p * 3;
+      const ticketTotal = Number(ticket.value) * p;
+      const carShare = 520;
+      const total = hotelTotal + foodTotal + ticketTotal + carShare;
+      const perPerson = Math.round(total / p);
+      peopleText.textContent = `${p} 人`;
+      hotelText.textContent = `${hotel.value} 元/晚/间`;
+      foodText.textContent = `${foodCost.value} 元/人/天`;
+      ticketText.textContent = `${ticket.value} 元/人`;
+      budget.textContent = `¥${perPerson}`;
+    }
+
+    [people, hotel, foodCost, ticket].forEach((input) => input.addEventListener('input', updateBudget));
+    updateBudget();
+  </script>
+</body>
+</html>
